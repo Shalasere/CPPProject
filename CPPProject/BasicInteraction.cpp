@@ -107,7 +107,23 @@ void displayMovieList(const std::vector<Movie>& movies, int page, int pageSize) 
     }
 }
 
+// Function to display ASCII art from a file
+void displayAsciiArt(const std::string& filename) {
+    std::ifstream artFile(filename);
+    if (artFile.is_open()) {
+        std::string line;
+        while (std::getline(artFile, line)) {
+            std::cout << line << std::endl;
+        }
+        artFile.close();
+    } else {
+        std::cerr << "Failed to open ASCII art file: " << filename << std::endl;
+    }
+}
+
 int main() {
+    // Display ascii art at program launch.
+    displayAsciiArt("Title-art.txt");
     std::cout << "Starting the program..." << std::endl;
 
     std::ifstream file("output_movies.csv");
