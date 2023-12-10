@@ -1,3 +1,9 @@
+/* Author: Jacob Burns
+    Program: JMC - Jacob's Movie Collection
+    Purpose: To interact and get data about the movies
+    that CinemaSins has covered.
+*/ //1
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -5,7 +11,7 @@
 #include <sstream>
 #include <algorithm>
 
-// Define a struct to represent movie information
+// Define a struct to represent movie information // 4
 struct Movie {
     std::string name;
     std::string link;
@@ -23,7 +29,7 @@ struct Movie {
     std::string apiResponse;
 };
 
-// Function to split a CSV line into fields
+// Function to split a CSV line into fields // 4,5,7
 std::vector<std::string> splitCSVLine(const std::string& line) {
     std::vector<std::string> fields;
     std::istringstream ss(line);
@@ -51,7 +57,7 @@ std::string toLower(const std::string& str) {
     return result;
 }
 
-// Function to search the movie array
+// Function to search the movie array //4,5,7,9
 bool searchMovie(const std::vector<Movie>& movies, const std::string& queryLower) {
     bool found = false;
     for (const Movie& m : movies) {
@@ -74,7 +80,7 @@ bool searchMovie(const std::vector<Movie>& movies, const std::string& queryLower
     return found;
 }
 
-// Functions to list movies below
+// Functions to list movies below //3,8
 void listMovies(const std::vector<Movie>& movies, int start, int end) {
     for (int i = start; i < end && i < movies.size(); ++i) {
         std::cout << i + 1 << ". " << movies[i].name << std::endl;
@@ -107,7 +113,7 @@ void displayMovieList(const std::vector<Movie>& movies, int page, int pageSize) 
     }
 }
 
-// Function to display ASCII art from a file
+// Function to display ASCII art from a file//6
 void displayAsciiArt(const std::string& filename) {
     std::ifstream artFile(filename);
     if (artFile.is_open()) {
@@ -126,7 +132,7 @@ int main() {
     displayAsciiArt("Title-art.txt");
     std::cout << "Starting the program..." << std::endl;
 
-    std::ifstream file("output_movies.csv");
+    std::ifstream file("output_movies.csv"); //6,9
     if (!file.is_open()) {
         std::cerr << "Failed to open the CSV file." << std::endl;
         return 1;
@@ -179,7 +185,7 @@ int main() {
 
     while (menuMode) {
         // Display an initial prompt to ask the user if they want to search or list first
-        std::cout << "Do you want to 'list' or 'search' for a movie? (Enter 'quit' to exit): ";
+        std::cout << "Do you want to 'list' or 'search' for a movie? (Enter 'quit' to exit): "; //8
         std::string initialChoice;
         std::cin >> initialChoice;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
